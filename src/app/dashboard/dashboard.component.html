@@ -1,0 +1,67 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dataList of detail">
+        <td>{{dataList.id}}</td>
+        <td>{{dataList.name}}</td>
+        <td>{{dataList.email}}</td>
+        <td>{{dataList.mobile}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-success me-3" (click)="viewData(dataList.id)">View</button>
+          <button type="button" class="btn btn-outline-success me-3" (click)="openPopup()">Add student</button>
+          <button type="button" class="btn btn-outline-primary me-3" (click)="updateData(dataList)">Edit</button>
+          <button type="button" class="btn btn-outline-danger" (click)="deleteData(dataList.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal d-block" tabindex="-1" *ngIf="this.isPopup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="this.isPopup=!this.isPopup"></button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="sendData()">
+          <div class="row mb-3">
+            <div class="col-6">
+              <input type="text" class="form-control" [(ngModel)]="data.name" name="name" placeholder="name">
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control" [(ngModel)]="data.mobile" name="mobile" placeholder="mobile">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-12">
+              <input type="text" class="form-control" [(ngModel)]="data.email" name="email" placeholder="email">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" *ngIf="isVisibleAddBtn">Add student</button>
+              <button (click)="updateUser(data)" class="btn btn-primary" *ngIf="isVisibleUpdateBtn">Update
+                student</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          (click)="this.isPopup=!this.isPopup">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

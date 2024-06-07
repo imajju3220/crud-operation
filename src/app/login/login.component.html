@@ -1,0 +1,24 @@
+<div class="container" style="width: 500px; margin: 60px auto;">
+  <form class="mb-5" (submit)="onSubmit()">
+  <div class="mb-3">
+    <label class="form-label">Email address</label>
+    <input type="email" class="form-control" [(ngModel)]="email" [ngModelOptions]="{standalone:true}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input type="password" class="form-control" [(ngModel)]="password" [ngModelOptions]="{standalone:true}">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> 
+
+<div class="alert alert-success" role="alert" *ngIf="success">
+  This is a success alert—check it out!
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="danger">
+  This is a danger alert—check it out!
+</div>
+</div>
